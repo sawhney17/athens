@@ -102,7 +102,7 @@
    ["YouTube Embed" YouTube "{{[[youtube]]: }}" nil 2]
    ["iframe Embed"  DesktopWindows "{{iframe: }}" nil 2]
    ["Block Embed"   ViewDayRounded "{{[[embed]]: (())}}" nil 4]
-   ["Excalidraw Embed"  Gesture "Error" nil nil]])
+   ["Witeboard Embed"  Gesture "Error" nil nil]])
 
 
 ;; [ "Block Embed" #(str "[[" (:title (get-day 1)) "]]")]
@@ -159,16 +159,6 @@
   [new-text]
   (.execCommand js/document "insertText" false new-text))
 
-(defn random_alphanumeric
-        ([n]
-           (let [chars-between #(map char (range (int %1) (inc (int %2))))
-                 chars (concat (chars-between 48 57)
-                               (chars-between  65 90)
-                               (chars-between 97 122)
-                               [\_])
-                 alphanumeric (take n (repeatedly #(rand-nth chars)))]
-             (reduce str alphanumeric))))
-
 (defn set-selection
   "select text from `start` to `end` in the textarea `target`"
   [target start end]
@@ -200,7 +190,7 @@
      (swap! state assoc
             :search/type nil)
      (set-selection target start-idx start)
-     (if (= caption "Excalidraw Embed")(replace-selection-with (str "{{iframe: " "https://excalidraw.com/#room=" (str (random_alphanumeric 20)) "," (str (random_alphanumeric 22)) "}}"))(replace-selection-with expand))
+     (if (= caption "Witeboard Embed")(replace-selection-with (str "{{iframe: " "https://witeboard.com/"(str (random-uuid)) "}} "))(replace-selection-with expand))
      (when pos
        (let [new-idx (+ start-idx (count expand) (- pos))]
          (set-cursor-position target new-idx)
