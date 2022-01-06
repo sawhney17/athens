@@ -104,6 +104,7 @@
                                                      ;; Remove OverlayScrollbars and instances of `overflow-y: overlay`
                                                      ;; after `scollbar-gutter` is implemented in browsers.
                                                      :enableBlinkFeatures 'OverlayScrollbars'
+                                                     :spellcheck false
                                                      :nodeIntegrationWorker true}})))
     (.manage main-window-state @main-window)
     ;; Path is relative to the compiled js file (main.js in our case)
